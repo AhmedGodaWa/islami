@@ -1,0 +1,74 @@
+import 'package:flutter/material.dart';
+import 'package:islami/tabs/hadith/hadith_tab.dart';
+import 'package:islami/tabs/quran/quran_tab.dart';
+import 'package:islami/tabs/radio/radio_tab.dart';
+import 'package:islami/tabs/settings/settings_tab.dart';
+import 'package:islami/tabs/sebha/sebha_tab.dart';
+
+class HomeScreen extends StatefulWidget {
+  static const String routeName = '/home';
+  const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  int currentIndex = 0;
+
+  final List<Widget> tabs = [
+    const QuranTab(),
+    const HadithTab(),
+    const SebhaTab(),
+    const RadioTab(),
+    const SettingsTab(),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage('assets/images/background_image.png'),
+          fit: BoxFit.fill,
+        ),
+      ),
+      child: Scaffold(
+        appBar: AppBar(title: const Text('إسلامي')),
+        body: tabs[currentIndex],
+        bottomNavigationBar: BottomNavigationBar(
+          currentIndex: currentIndex,
+          onTap: (index) {
+            setState(() {
+              currentIndex = index;
+            });
+          },
+          items: const [
+            BottomNavigationBarItem(
+              label: 'Quran',
+              icon: ImageIcon(AssetImage('assets/images/icons/quran_icon.png')),
+            ),
+            BottomNavigationBarItem(
+              label: 'Hdith',
+              icon: ImageIcon(
+                AssetImage('assets/images/icons/hadith_icon.png'),
+              ),
+            ),
+            BottomNavigationBarItem(
+              label: 'Sebha',
+              icon: ImageIcon(AssetImage('assets/images/icons/sebha_icon.png')),
+            ),
+            BottomNavigationBarItem(
+              label: 'Radio',
+              icon: ImageIcon(AssetImage('assets/images/icons/radio_icon.png')),
+            ),
+            BottomNavigationBarItem(
+              label: 'Settings',
+              icon: Icon(Icons.settings_outlined),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
