@@ -65,6 +65,10 @@ class AppTheme {
       unselectedItemColor: lightUnselected,
       type: BottomNavigationBarType.fixed,
     ),
+    textTheme: const TextTheme(
+      headlineSmall: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
+      titleLarge: TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
+    ),
   );
 
   static ThemeData darkTheme = ThemeData(
@@ -81,6 +85,11 @@ class AppTheme {
       selectedItemColor: darkSelected,
       unselectedItemColor: darkUnselected,
       type: BottomNavigationBarType.fixed,
+    ),
+
+    textTheme: const TextTheme(
+      headlineSmall: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
+      titleLarge: TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
     ),
   );
 }

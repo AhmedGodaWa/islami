@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:islami/core/theme/app_theme.dart';
 import 'package:islami/screens/home_screen.dart';
+import 'package:islami/screens/sura_details_screen.dart';
 
 void main() {
   runApp(const IslamiApp());
@@ -11,13 +13,22 @@ class IslamiApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      routes: {HomeScreen.routeName: (_) => const HomeScreen()},
-      initialRoute: HomeScreen.routeName,
-      theme: AppTheme.lightTheme,
-      darkTheme: AppTheme.darkTheme,
-      themeMode: ThemeMode.light,
+    return ScreenUtilInit(
+      designSize: const Size(392.7, 800.7),
+      minTextAdapt: true,
+      builder: (context, child) {
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          routes: {
+            HomeScreen.routeName: (_) => const HomeScreen(),
+            SuraDetailsScreen.routeName: (_) => const SuraDetailsScreen(),
+          },
+          initialRoute: HomeScreen.routeName,
+          theme: AppTheme.lightTheme,
+          darkTheme: AppTheme.darkTheme,
+          themeMode: ThemeMode.light,
+        );
+      },
     );
   }
 }
