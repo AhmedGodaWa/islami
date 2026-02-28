@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:islami/core/theme/app_theme.dart';
+import 'package:islami/screens/hadith_details_screen.dart';
 import 'package:islami/screens/home_screen.dart';
+import 'package:islami/screens/saved_hadith_screen.dart';
 import 'package:islami/screens/sura_details_screen.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Hive.initFlutter();
+
+  await Hive.openBox('bookmarks');
   runApp(const IslamiApp());
 }
 
@@ -22,6 +30,8 @@ class IslamiApp extends StatelessWidget {
           routes: {
             HomeScreen.routeName: (_) => const HomeScreen(),
             SuraDetailsScreen.routeName: (_) => const SuraDetailsScreen(),
+            HadithDetailsScreen.routeName: (_) => const HadithDetailsScreen(),
+            SavedHadithScreen.routeName: (_) => const SavedHadithScreen(),
           },
           initialRoute: HomeScreen.routeName,
           theme: AppTheme.lightTheme,

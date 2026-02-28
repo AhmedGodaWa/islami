@@ -1,0 +1,1 @@
+enum HadithMode { offline, online }

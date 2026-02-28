@@ -1,0 +1,1 @@
+enum HadithSource { local, remote }

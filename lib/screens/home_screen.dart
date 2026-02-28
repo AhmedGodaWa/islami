@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:islami/tabs/hadith/hadith_tab.dart';
-import 'package:islami/tabs/quran/quran_tab.dart';
-import 'package:islami/tabs/radio/radio_tab.dart';
-import 'package:islami/tabs/settings/settings_tab.dart';
-import 'package:islami/tabs/sebha/sebha_tab.dart';
+import 'package:islami/features/hadith/hadith_tab.dart';
+import 'package:islami/features/quran/quran_tab.dart';
+import 'package:islami/features/radio/radio_tab.dart';
+import 'package:islami/features/settings/settings_tab.dart';
+import 'package:islami/features/sebha/sebha_tab.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String routeName = '/home';
