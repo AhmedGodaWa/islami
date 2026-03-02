@@ -25,7 +25,7 @@ class _HadithDetailsScreenState extends State<HadithDetailsScreen> {
     if (!_initialized) {
       final hadith = ModalRoute.of(context)!.settings.arguments as HadithModel;
 
-      isBookMarked = BookmarkRepo.isSaved(hadith.id);
+      isBookMarked = bookmarkRepo.isSaved(hadith.id);
 
       _initialized = true;
     }
@@ -52,8 +52,8 @@ class _HadithDetailsScreenState extends State<HadithDetailsScreen> {
                 final hadith =
                     ModalRoute.of(context)!.settings.arguments as HadithModel;
                 setState(() {
-                  BookmarkRepo.toggle(hadith);
-                  isBookMarked = BookmarkRepo.isSaved(hadith.id);
+                  bookmarkRepo.toggle(hadith);
+                  isBookMarked = bookmarkRepo.isSaved(hadith.id);
                 });
               },
               icon: Icon(isBookMarked ? Icons.bookmark : Icons.bookmark_border),

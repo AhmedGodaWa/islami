@@ -13,7 +13,7 @@ class HadithRemoteDataSource {
     /// نبدأ من صفحة عشوائية
     final int startPage = random.nextInt(200) + 1;
 
-    List<HadithModel> allHadiths = [];
+    final List<HadithModel> allHadiths = [];
 
     /// نجيب صفحتين = 50 حديث
     for (int page = startPage; page < startPage + 2; page++) {

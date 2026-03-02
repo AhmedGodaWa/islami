@@ -2,7 +2,8 @@ import 'package:hive/hive.dart';
 import 'package:islami/features/hadith/hadith_source.dart';
 import 'package:islami/models/hadith_model.dart';
 
-final BookmarkRepo = BookmarkRepository();
+
+final bookmarkRepo = BookmarkRepository();
 
 class BookmarkRepository {
   final Box box = Hive.box('bookmarks');
@@ -32,8 +33,8 @@ class BookmarkRepository {
     final values = box.values.toList();
 
     return values
-        // ✅ تجاهل أي بيانات قديمة غلط
-        .where((e) => e is Map)
+        //  تجاهل أي بيانات قديمة غلط
+        .whereType<Map>()
         .map((data) {
           final map = Map<String, dynamic>.from(data);
 

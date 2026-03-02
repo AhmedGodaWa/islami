@@ -21,7 +21,7 @@ class _SavedHadithScreenState extends State<SavedHadithScreen> {
   bool isLoading = true;
 
   Future<void> loadSavedHadiths() async {
-    savedHadiths = BookmarkRepo.getSavedHadiths();
+    savedHadiths = bookmarkRepo.getSavedHadiths();
 
     setState(() {
       isLoading = false;

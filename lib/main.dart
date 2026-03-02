@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:islami/core/theme/app_theme.dart';
+import 'package:islami/features/sebha/controller/sebha_controller.dart';
 import 'package:islami/screens/hadith_details_screen.dart';
 import 'package:islami/screens/home_screen.dart';
 import 'package:islami/screens/saved_hadith_screen.dart';
 import 'package:islami/screens/sura_details_screen.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -13,7 +15,12 @@ void main() async {
   await Hive.initFlutter();
 
   await Hive.openBox('bookmarks');
-  runApp(const IslamiApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (_) => SebhaController(),
+      child: const IslamiApp(),
+    ),
+  );
 }
 
 class IslamiApp extends StatelessWidget {
