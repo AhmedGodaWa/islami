@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:islami/features/settings/language.dart';
 import 'package:islami/features/settings/settings_provider.dart';
+import 'package:islami/l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 
 class LanguageSection extends StatelessWidget {
@@ -20,7 +21,10 @@ class LanguageSection extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text('Language', style: Theme.of(context).textTheme.headlineSmall),
+        Text(
+          AppLocalizations.of(context)!.language,
+          style: Theme.of(context).textTheme.headlineSmall,
+        ),
         DropdownButton<Language>(
           value: languages.firstWhere(
             (language) => language.code == settingsProvider.languageCode,

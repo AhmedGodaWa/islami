@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:islami/features/hadith/hadith_list_item.dart';
 import 'package:islami/features/hadith/hadith_mode.dart';
 import 'package:islami/features/hadith/data/hadith_repository.dart';
+import 'package:islami/l10n/app_localizations.dart';
 import 'package:islami/models/hadith_model.dart';
 import 'package:islami/screens/saved_hadith_screen.dart';
 import 'package:islami/widgets/loading_indicator.dart';
@@ -41,8 +42,8 @@ class _HadithTabState extends State<HadithTab> {
               });
               await loadHadith();
             },
-            firstLabel: 'Online',
-            secondLabel: 'Offline',
+            firstLabel: AppLocalizations.of(context)!.online,
+            secondLabel: AppLocalizations.of(context)!.offline,
           ),
         ),
         Expanded(
@@ -87,7 +88,7 @@ class _HadithTabState extends State<HadithTab> {
                           ),
                         ),
                         Text(
-                          'الأحاديث',
+                          AppLocalizations.of(context)!.hadiths,
                           style: Theme.of(context).textTheme.headlineSmall,
                         ),
 

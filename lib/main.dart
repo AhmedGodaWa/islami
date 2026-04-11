@@ -4,6 +4,7 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:islami/core/theme/app_theme.dart';
 import 'package:islami/features/sebha/controller/sebha_controller.dart';
 import 'package:islami/features/settings/settings_provider.dart';
+import 'package:islami/l10n/app_localizations.dart';
 import 'package:islami/screens/hadith_details_screen.dart';
 import 'package:islami/screens/home_screen.dart';
 import 'package:islami/screens/saved_hadith_screen.dart';
@@ -53,6 +54,12 @@ class IslamiApp extends StatelessWidget {
           theme: AppTheme.lightTheme,
           darkTheme: AppTheme.darkTheme,
           themeMode: settingsProvider.themeMode,
+
+          // استخدم نظام الترجمة الموجود في AppLocalizations
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          // ده بيقول للتطبيق إن اللغات المتاحة هي: en , ar
+          supportedLocales: AppLocalizations.supportedLocales,
+          locale: Locale(settingsProvider.languageCode),
         );
       },
     );

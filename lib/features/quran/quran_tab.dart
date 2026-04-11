@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:islami/l10n/app_localizations.dart';
 import 'package:islami/screens/sura_details_screen.dart';
 import 'package:islami/features/quran/sura_data.dart';
 import 'package:islami/features/quran/sura_list_item.dart';
@@ -20,10 +21,11 @@ class QuranTab extends StatelessWidget {
         Divider(color: dividerColor, thickness: 2),
         IntrinsicHeight(
           child: Row(
+            textDirection: TextDirection.ltr,
             children: [
               Expanded(
                 child: Text(
-                  'Verses',
+                  AppLocalizations.of(context)!.verses,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   textAlign: TextAlign.center,
@@ -33,7 +35,7 @@ class QuranTab extends StatelessWidget {
               VerticalDivider(thickness: 2, color: dividerColor),
               Expanded(
                 child: Text(
-                  'Sura name',
+                  AppLocalizations.of(context)!.suraName,
                   textAlign: TextAlign.center,
                   style: Theme.of(context).textTheme.headlineSmall,
                 ),

@@ -34,6 +34,7 @@ class ModeToggle extends StatelessWidget {
       child: Stack(
         children: [
           Row(
+            textDirection: TextDirection.ltr,
             children: [
               Expanded(
                 child: InkWell(

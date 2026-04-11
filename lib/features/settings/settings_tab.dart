@@ -3,7 +3,7 @@ import 'package:islami/features/settings/widgets/language_section.dart';
 import 'package:islami/features/settings/widgets/theme_section.dart';
 
 class SettingsTab extends StatelessWidget {
-  SettingsTab({super.key});
+  const SettingsTab({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +12,7 @@ class SettingsTab extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(height: MediaQuery.sizeOf(context).height * 0.08),
-          ThemeSection(),
+          const ThemeSection(),
           const SizedBox(height: 16),
           LanguageSection(),
         ],
