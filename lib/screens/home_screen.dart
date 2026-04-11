@@ -4,6 +4,7 @@ import 'package:islami/features/quran/quran_tab.dart';
 import 'package:islami/features/radio/radio_tab.dart';
 import 'package:islami/features/settings/settings_tab.dart';
 import 'package:islami/features/sebha/sebha_tab.dart';
+import 'package:islami/widgets/app_background.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String routeName = '/home';
@@ -21,18 +22,18 @@ class _HomeScreenState extends State<HomeScreen> {
     const HadithTab(),
     const SebhaTab(),
     const RadioTab(),
-    const SettingsTab(),
+    SettingsTab(),
   ];
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage('assets/images/background_image.png'),
-          fit: BoxFit.fill,
-        ),
-      ),
+    return AppBackground(
+      // decoration: BoxDecoration(
+      //   image: DecorationImage(
+      //     image: AssetImage(AppHelper.getBackgroundImage(context)),
+      //     fit: BoxFit.fill,
+      //   ),
+      // ),
       child: Scaffold(
         appBar: AppBar(title: const Text('Islami')),
         body: tabs[currentIndex],

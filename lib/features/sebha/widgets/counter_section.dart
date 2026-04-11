@@ -5,6 +5,7 @@ class CounterSection extends StatelessWidget {
   final int count;
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return Column(
       children: [
         Text('عدد التسبيحات', style: TextTheme.of(context).headlineSmall),
@@ -12,7 +13,9 @@ class CounterSection extends StatelessWidget {
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 38, vertical: 10),
           decoration: BoxDecoration(
-            color: const Color(0xFFDFDEDE),
+            color: isDark
+                ? const Color(0xFF25365A) // dark counter
+                : const Color(0xFFDFDEDE), // light counter
             boxShadow: [
               BoxShadow(
                 color: Colors.black.withAlpha(55),

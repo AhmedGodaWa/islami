@@ -19,6 +19,14 @@ class _SebhaViewState extends State<SebhaView> {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final sebhaSize = screenWidth * 0.65;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final bodyImage = isDark
+        ? 'assets/images/body_sebha_logo_dark.png'
+        : 'assets/images/body_sebha_logo.png';
+
+    final headImage = isDark
+        ? 'assets/images/head_sebha_logo_dark.png'
+        : 'assets/images/head_sebha_logo.png';
     return SizedBox(
       width: sebhaSize,
       height: sebhaSize,
@@ -43,10 +51,7 @@ class _SebhaViewState extends State<SebhaView> {
                   duration: const Duration(milliseconds: 200),
                   curve: Curves.easeOut,
                   child: ClipOval(
-                    child: Image.asset(
-                      'assets/images/body_sebha_logo.png',
-                      width: sebhaSize,
-                    ),
+                    child: Image.asset(bodyImage, width: sebhaSize),
                   ),
                 ),
               ),
@@ -58,7 +63,7 @@ class _SebhaViewState extends State<SebhaView> {
               sebhaSize * SebhaView.headOffsetY,
             ),
             child: Image.asset(
-              'assets/images/head_sebha_logo.png',
+              headImage,
               width: sebhaSize * SebhaView.headScale,
             ),
           ),
