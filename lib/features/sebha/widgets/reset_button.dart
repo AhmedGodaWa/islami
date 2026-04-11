@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:islami/core/theme/app_colors.dart';
+
 
 class ResetButton extends StatelessWidget {
   final VoidCallback onTap;
@@ -7,12 +7,13 @@ class ResetButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return InkWell(
       onTap: onTap,
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 8),
         decoration: BoxDecoration(
-          color: AppColors.lightPrimary,
+          color: Theme.of(context).colorScheme.primary,
           boxShadow: [
             BoxShadow(
               color: Colors.black.withAlpha(55),
@@ -24,7 +25,9 @@ class ResetButton extends StatelessWidget {
         ),
         child: Text(
           'إعادة',
-          style: TextTheme.of(context).titleLarge?.copyWith(color: Colors.white),
+          style: Theme.of(context).textTheme.titleLarge?.copyWith(
+            color: isDark ? Colors.black : Colors.white,
+          ),
         ),
       ),
     );

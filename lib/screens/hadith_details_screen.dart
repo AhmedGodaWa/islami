@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:islami/features/hadith/data/bookmark_repository.dart';
 import 'package:islami/models/hadith_model.dart';
+import 'package:islami/widgets/app_background.dart';
 
 class HadithDetailsScreen extends StatefulWidget {
   static const String routeName = '/hadith-details';
@@ -34,13 +35,17 @@ class _HadithDetailsScreenState extends State<HadithDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     final hadith = ModalRoute.of(context)!.settings.arguments as HadithModel;
-    return Container(
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage('assets/images/background_image.png'),
-          fit: BoxFit.fill,
-        ),
-      ),
+    return AppBackground(
+      // decoration: BoxDecoration(
+      //   image: DecorationImage(
+      //     image: AssetImage(
+      //       Theme.of(context).brightness == Brightness.dark
+      //           ? 'assets/images/background_image_dark.png'
+      //           : 'assets/images/background_image.png',
+      //     ),
+      //     fit: BoxFit.fill,
+      //   ),
+      // ),
       child: Scaffold(
         appBar: AppBar(
           centerTitle: true,
@@ -80,7 +85,9 @@ class _HadithDetailsScreenState extends State<HadithDetailsScreen> {
                   hadith.bookName!,
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
                     fontSize: 18,
-                    color: Colors.grey,
+                    color: Theme.of(
+                      context,
+                    ).textTheme.bodySmall?.color?.withValues(alpha: 20),
                   ),
                 ),
 
@@ -91,7 +98,7 @@ class _HadithDetailsScreenState extends State<HadithDetailsScreen> {
                 width: 60,
                 height: 2,
                 decoration: BoxDecoration(
-                  color: Theme.of(context).primaryColor,
+                  color: Theme.of(context).colorScheme.primary,
                   borderRadius: BorderRadius.circular(2),
                 ),
               ),
@@ -105,7 +112,7 @@ class _HadithDetailsScreenState extends State<HadithDetailsScreen> {
             horizontal: MediaQuery.sizeOf(context).width * 0.04,
           ),
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: Theme.of(context).cardColor,
             borderRadius: BorderRadius.circular(24),
           ),
           child: SingleChildScrollView(

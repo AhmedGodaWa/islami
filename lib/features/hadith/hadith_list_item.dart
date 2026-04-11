@@ -30,7 +30,7 @@ class HadithListItem extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 8),
-        const Divider(thickness: 1),
+        Divider(thickness: 1, color: Theme.of(context).dividerColor),
       ],
     );
   }

@@ -3,6 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:islami/core/theme/app_theme.dart';
 import 'package:islami/features/sebha/controller/sebha_controller.dart';
+import 'package:islami/features/settings/settings_provider.dart';
+import 'package:islami/l10n/app_localizations.dart';
 import 'package:islami/screens/hadith_details_screen.dart';
 import 'package:islami/screens/home_screen.dart';
 import 'package:islami/screens/saved_hadith_screen.dart';
@@ -15,9 +17,13 @@ void main() async {
   await Hive.initFlutter();
 
   await Hive.openBox('bookmarks');
+  await Hive.openBox('settings');
   runApp(
-    ChangeNotifierProvider(
-      create: (_) => SebhaController(),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => SebhaController()),
+        ChangeNotifierProvider(create: (_) => SettingsProvider()),
+      ],
       child: const IslamiApp(),
     ),
   );
@@ -28,6 +34,10 @@ class IslamiApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final SettingsProvider settingsProvider = Provider.of<SettingsProvider>(
+      context,
+    );
+
     return ScreenUtilInit(
       designSize: const Size(392.7, 800.7),
       minTextAdapt: true,
@@ -43,7 +53,13 @@ class IslamiApp extends StatelessWidget {
           initialRoute: HomeScreen.routeName,
           theme: AppTheme.lightTheme,
           darkTheme: AppTheme.darkTheme,
-          themeMode: ThemeMode.light,
+          themeMode: settingsProvider.themeMode,
+
+          // استخدم نظام الترجمة الموجود في AppLocalizations
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          // ده بيقول للتطبيق إن اللغات المتاحة هي: en , ar
+          supportedLocales: AppLocalizations.supportedLocales,
+          locale: Locale(settingsProvider.languageCode),
         );
       },
     );

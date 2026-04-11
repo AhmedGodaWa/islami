@@ -16,25 +16,31 @@ class RadioControlsSection extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const IconButton(
-          color: AppColors.lightPrimary,
+        IconButton(
+          color: Theme.of(context).brightness == Brightness.dark
+              ? AppColors.gold
+              : AppColors.lightPrimary,
           iconSize: 35,
           onPressed: null,
-          icon: Icon(Icons.skip_previous),
+          icon: const Icon(Icons.skip_previous),
         ),
         const SizedBox(width: kControlsSpacing),
         IconButton(
-          color: AppColors.lightPrimary,
+          color: Theme.of(context).brightness == Brightness.dark
+              ? AppColors.gold
+              : AppColors.lightPrimary,
           iconSize: 55,
           onPressed: onPlay,
           icon: Icon(isPlaying ? Icons.pause : Icons.play_arrow),
         ),
         const SizedBox(width: kControlsSpacing),
-        const IconButton(
-          color: AppColors.lightPrimary,
+        IconButton(
+          color: Theme.of(context).brightness == Brightness.dark
+              ? AppColors.gold
+              : AppColors.lightPrimary,
           iconSize: 35,
           onPressed: null,
-          icon: Icon(Icons.skip_next),
+          icon: const Icon(Icons.skip_next),
         ),
       ],
     );

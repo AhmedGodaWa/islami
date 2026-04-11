@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:islami/core/theme/app_colors.dart';
 import 'package:islami/features/hadith/hadith_list_item.dart';
 import 'package:islami/features/hadith/hadith_mode.dart';
 import 'package:islami/features/hadith/data/hadith_repository.dart';
+import 'package:islami/l10n/app_localizations.dart';
 import 'package:islami/models/hadith_model.dart';
 import 'package:islami/screens/saved_hadith_screen.dart';
 import 'package:islami/widgets/loading_indicator.dart';
@@ -42,8 +42,8 @@ class _HadithTabState extends State<HadithTab> {
               });
               await loadHadith();
             },
-            firstLabel: 'Online',
-            secondLabel: 'Offline',
+            firstLabel: AppLocalizations.of(context)!.online,
+            secondLabel: AppLocalizations.of(context)!.offline,
           ),
         ),
         Expanded(
@@ -56,7 +56,7 @@ class _HadithTabState extends State<HadithTab> {
             ),
             child: Container(
               decoration: BoxDecoration(
-                color: AppColors.offWhite,
+                color: Theme.of(context).cardColor,
                 borderRadius: BorderRadius.circular(12),
                 boxShadow: [
                   BoxShadow(
@@ -80,15 +80,25 @@ class _HadithTabState extends State<HadithTab> {
                               SavedHadithScreen.routeName,
                             );
                           },
-                          icon: const Icon(Icons.bookmark_border),
+                          icon: Icon(
+                            Icons.bookmark_border,
+                            color: Theme.of(
+                              context,
+                            ).bottomNavigationBarTheme.selectedItemColor,
+                          ),
                         ),
                         Text(
-                          'الأحاديث',
+                          AppLocalizations.of(context)!.hadiths,
                           style: Theme.of(context).textTheme.headlineSmall,
                         ),
 
                         IconButton(
-                          icon: const Icon(Icons.refresh),
+                          icon: Icon(
+                            Icons.refresh,
+                            color: Theme.of(
+                              context,
+                            ).bottomNavigationBarTheme.selectedItemColor,
+                          ),
                           onPressed: () async {
                             await loadHadith(); // هيجيب random جديد
                           },
@@ -96,7 +106,7 @@ class _HadithTabState extends State<HadithTab> {
                       ],
                     ),
                   ),
-                  const Divider(thickness: 2.4, color: AppColors.lightPrimary),
+                  const Divider(thickness: 2.4),
                   Expanded(
                     child: Padding(
                       padding: const EdgeInsets.only(top: 8.0),

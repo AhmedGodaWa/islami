@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:islami/core/theme/app_colors.dart';
 import 'package:islami/features/hadith/hadith_mode.dart';
 
 class ModeToggle extends StatelessWidget {
@@ -18,10 +17,11 @@ class ModeToggle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final accentColor = Theme.of(context).colorScheme.primary;
     return Container(
       height: 55,
       decoration: BoxDecoration(
-        color: AppColors.offWhite,
+        color: Theme.of(context).cardColor,
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
@@ -34,6 +34,7 @@ class ModeToggle extends StatelessWidget {
       child: Stack(
         children: [
           Row(
+            textDirection: TextDirection.ltr,
             children: [
               Expanded(
                 child: InkWell(
@@ -45,8 +46,8 @@ class ModeToggle extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
                         color: selectedMode == HadithMode.online
-                            ? AppColors.lightPrimary
-                            : AppColors.offDark,
+                            ? accentColor
+                            : Theme.of(context).textTheme.titleLarge!.color,
                       ),
                     ),
                   ),
@@ -62,8 +63,8 @@ class ModeToggle extends StatelessWidget {
                         fontWeight: FontWeight.w500,
                         fontSize: 18,
                         color: selectedMode == HadithMode.offline
-                            ? AppColors.lightPrimary
-                            : AppColors.offDark,
+                            ? accentColor
+                            : Theme.of(context).textTheme.titleLarge!.color,
                       ),
                     ),
                   ),
@@ -83,7 +84,7 @@ class ModeToggle extends StatelessWidget {
                 height: 4,
                 margin: const EdgeInsets.symmetric(horizontal: 8),
                 decoration: BoxDecoration(
-                  color: AppColors.lightPrimary,
+                  color: accentColor,
                   borderRadius: BorderRadius.circular(3),
                 ),
               ),

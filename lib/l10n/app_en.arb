@@ -1,0 +1,16 @@
+{
+  "appTitle": "Islami",
+  "settings": "Settings",
+  "language": "Language",
+  "darkMode": "Dark Mode",
+  "quran": "Quran",
+  "hadith": "Hadith",
+  "sebha": "Sebha",
+  "radio": "Radio",
+
+  "verses": "Verses",
+  "suraName": "Sura name",
+  "online": "Online",
+  "offline": "Offline",
+  "hadiths": "Hadiths"
+}

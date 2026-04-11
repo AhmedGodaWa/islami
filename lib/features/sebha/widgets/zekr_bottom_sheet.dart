@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:islami/core/theme/app_colors.dart';
 
 class ZekrBottomSheet extends StatefulWidget {
   final String? initialZekr;
@@ -11,14 +10,13 @@ class ZekrBottomSheet extends StatefulWidget {
 }
 
 class _ZekrBottomSheetState extends State<ZekrBottomSheet> {
-   late final TextEditingController controller;
+  late final TextEditingController controller;
 
   @override
   void initState() {
     super.initState();
 
-    controller =
-        TextEditingController(text: widget.initialZekr);
+    controller = TextEditingController(text: widget.initialZekr);
   }
 
   @override
@@ -26,9 +24,11 @@ class _ZekrBottomSheetState extends State<ZekrBottomSheet> {
     controller.dispose();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     // final controller = TextEditingController(text: widget.initialZekr);
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     final isEditing = widget.initialZekr != null;
     return AnimatedPadding(
       duration: const Duration(milliseconds: 200),
@@ -38,9 +38,9 @@ class _ZekrBottomSheetState extends State<ZekrBottomSheet> {
       ),
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-        decoration: const BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+        decoration: BoxDecoration(
+          color: Theme.of(context).cardColor,
+          borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
         ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -50,7 +50,7 @@ class _ZekrBottomSheetState extends State<ZekrBottomSheet> {
                 width: 40,
                 height: 4,
                 decoration: BoxDecoration(
-                  color: Colors.grey.shade300,
+                  color: Theme.of(context).dividerColor,
                   borderRadius: BorderRadius.circular(10),
                 ),
               ),
@@ -58,7 +58,9 @@ class _ZekrBottomSheetState extends State<ZekrBottomSheet> {
             const SizedBox(height: 16),
             Text(
               isEditing ? "تعديل الذكر" : "إضافة ذكر",
-              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              style: Theme.of(
+                context,
+              ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 20),
             TextField(
@@ -73,7 +75,9 @@ class _ZekrBottomSheetState extends State<ZekrBottomSheet> {
 
                 // Light background
                 filled: true,
-                fillColor: Colors.grey.withValues(alpha: 0.05),
+                fillColor: isDark
+                    ? Colors.white.withAlpha(13)
+                    : Colors.grey.withAlpha(13),
 
                 contentPadding: const EdgeInsets.symmetric(
                   horizontal: 16,
@@ -84,7 +88,7 @@ class _ZekrBottomSheetState extends State<ZekrBottomSheet> {
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(14),
                   borderSide: BorderSide(
-                    color: AppColors.lightPrimary.withValues(alpha: 3.4),
+                    color: Theme.of(context).colorScheme.primary.withAlpha(102),
                     width: 1,
                   ),
                 ),
@@ -92,8 +96,8 @@ class _ZekrBottomSheetState extends State<ZekrBottomSheet> {
                 // ===== When focusing =====
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(14),
-                  borderSide: const BorderSide(
-                    color: AppColors.lightPrimary,
+                  borderSide: BorderSide(
+                    color: Theme.of(context).colorScheme.primary,
                     width: 3,
                   ),
                 ),
@@ -105,14 +109,19 @@ class _ZekrBottomSheetState extends State<ZekrBottomSheet> {
                 //Delete button (only appears if there is a mention)
                 if (widget.initialZekr != null)
                   Expanded(
-                    child: TextButton(
+                    child: OutlinedButton(
+                      style: OutlinedButton.styleFrom(
+                        side: const BorderSide(color: Colors.red),
+                        foregroundColor: Colors.red,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(14),
+                        ),
+                        padding: const EdgeInsets.symmetric(vertical: 14),
+                      ),
                       onPressed: () {
                         Navigator.pop(context, "");
                       },
-                      child: const Text(
-                        "حذف",
-                        style: TextStyle(color: Colors.red),
-                      ),
+                      child: const Text("حذف"),
                     ),
                   ),
 
@@ -128,10 +137,10 @@ class _ZekrBottomSheetState extends State<ZekrBottomSheet> {
                       return ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           backgroundColor: isNotEmpty
-                              ? AppColors.lightPrimary
+                              ? Theme.of(context).colorScheme.primary
                               : Colors.grey.shade300,
                           foregroundColor: isNotEmpty
-                              ? Colors.white
+                              ? (isDark ? Colors.black : Colors.white)
                               : Colors.grey.shade600,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(14),

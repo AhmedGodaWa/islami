@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:islami/core/theme/app_colors.dart';
 
 class ZekrSection extends StatelessWidget {
   final String? zekr;
@@ -10,13 +9,18 @@ class ZekrSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Widget content;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
 
     /// ===== حالة عدم وجود ذكر =====
     if (zekr == null) {
       content = Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Icon(Icons.add, color: AppColors.lightPrimary, size: 20),
+          Icon(
+            Icons.add,
+            color: Theme.of(context).colorScheme.primary,
+            size: 20,
+          ),
           const SizedBox(width: 6),
           Text(
             'إضافة ذكر',
@@ -32,7 +36,7 @@ class ZekrSection extends StatelessWidget {
       content = Container(
         padding: const EdgeInsets.symmetric(horizontal: 38, vertical: 10),
         decoration: BoxDecoration(
-          color: AppColors.lightPrimary,
+          color: Theme.of(context).colorScheme.primary,
           borderRadius: BorderRadius.circular(20),
           boxShadow: [
             BoxShadow(
@@ -44,9 +48,9 @@ class ZekrSection extends StatelessWidget {
         ),
         child: Text(
           zekr!,
-          style: TextTheme.of(
-            context,
-          ).titleLarge?.copyWith(color: Colors.white),
+          style: Theme.of(context).textTheme.titleLarge?.copyWith(
+            color: isDark ? Colors.black : Colors.white,
+          ),
         ),
       );
     }
